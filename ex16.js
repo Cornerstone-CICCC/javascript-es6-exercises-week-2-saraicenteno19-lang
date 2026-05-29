@@ -16,8 +16,53 @@ For more information on casing styles, read Wikipedia's Special Case Styles for 
 */
 
 const makeCaze = function (input, caze) {
-  // Put your solution here
+  let result = input;
+   const cases = Array.isArray(caze) ? caze : [caze];
+
+   if (cases.includes("camel")) {
+    const words = result.split(" ");
+    result =
+    words[0].toLowerCase() +
+    words
+      .slice(1)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join("");
+  }
+  if (cases.includes("pascal")) {
+    result = result
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join("");
+  }
+  if (cases.includes("snake")) {
+    result = result.split(" ").join("_").toLowerCase();
+  }
+  if (cases.includes("kebab")) {
+    result = result.split (" ").join ("-");
+  }
+  if (cases.includes("title")) {
+    result = result
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
+      
+    if (cases.includes("vowel")) {
+      result = result.replace(/[aeiou\s]/gi, match => match.toLowerCase());
+  }
+  if (cases.includes("consonant")) {
+    result = result.replace(/[^aeiou\s]/gi, match => match.toUpperCase());
+  }
+  if (cases.includes("upper")) {
+    result = result.toUpperCase();
+  }
+  if (cases.includes("lower")) {
+    result = result.toLowerCase();
+  }
+
+  return result;
 };
+  
 
 console.log(makeCaze("this is a string", "camel")); // thisIsAString
 console.log(makeCaze("this is a string", "pascal")); // ThisIsAString
